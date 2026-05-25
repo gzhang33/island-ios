@@ -7,4 +7,3 @@ DerivedData/
 Pods/
 .build/
 .swiftpm/
-*.resolved
