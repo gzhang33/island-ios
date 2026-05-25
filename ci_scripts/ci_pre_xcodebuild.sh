@@ -3,7 +3,13 @@ set -e
 echo "Island iOS - Pre build starting"
 
 # Inject Xcode Cloud environment variables into xcconfig
-CONFIG_PATH="${CI_PRIMARY_REPOSITORY_PATH}/ios-swift/Island/Config.xcconfig"
+REPO_ROOT="${CI_PRIMARY_REPOSITORY_PATH:-$(pwd)}"
+CONFIG_PATH="${REPO_ROOT}/Island/Config.xcconfig"
+
+if [ ! -f "$CONFIG_PATH" ]; then
+  echo "Config file not found at $CONFIG_PATH"
+  exit 1
+fi
 
 if [ -n "$SUPABASE_URL" ]; then
   echo "SUPABASE_URL = ${SUPABASE_URL}" >> "$CONFIG_PATH"

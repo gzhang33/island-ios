@@ -18,10 +18,21 @@ struct Template: Codable, Identifiable {
     var checkinCount: Int { items.filter { $0.itemType == .checkin }.count }
     var capsuleCount: Int { items.filter { $0.itemType == .capsule }.count }
     var moodCount: Int { items.filter { $0.itemType == .mood }.count }
+    var itemCountLabel: String { "\(items.count) 个项目" }
 
     enum CodingKeys: String, CodingKey {
         case id, title, description, category, subcategory, sortOrder, isActive, items
         case coverImageUrl = "cover_image_url", createdAt = "created_at"
+    }
+}
+
+extension Template: Hashable {
+    static func == (lhs: Template, rhs: Template) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }
 

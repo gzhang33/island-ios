@@ -1,6 +1,20 @@
 import SwiftUI
 
 enum Theme {
+    struct Shadow {
+        let color: Color
+        let radius: CGFloat
+        let x: CGFloat
+        let y: CGFloat
+
+        init(color: Color, radius: CGFloat, x: CGFloat = 0, y: CGFloat = 0) {
+            self.color = color
+            self.radius = radius
+            self.x = x
+            self.y = y
+        }
+    }
+
     // MARK: - Colors
 
     enum Colors {

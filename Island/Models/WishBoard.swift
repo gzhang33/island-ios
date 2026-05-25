@@ -24,3 +24,13 @@ struct WishBoard: Codable, Identifiable {
         case wishCount = "wish_count"
     }
 }
+
+extension WishBoard: Hashable {
+    static func == (lhs: WishBoard, rhs: WishBoard) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}

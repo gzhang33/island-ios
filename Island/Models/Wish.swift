@@ -27,3 +27,13 @@ struct Wish: Codable, Identifiable {
         case createdAt = "created_at", updatedAt = "updated_at"
     }
 }
+
+extension Wish: Hashable {
+    static func == (lhs: Wish, rhs: Wish) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
